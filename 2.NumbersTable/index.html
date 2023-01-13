@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/2.NumbersTable/css/style.css">
+  <title>Таблица номеров</title>
+</head>
+
+<body>
+
+  <table id="table"></table>
+  
+  <script src="/2.NumbersTable/js/const.js"></script>
+  <script>
+    for (let value in PHONE_NUMBER) {
+      const header = document.createElement('th');
+      header.setAttribute('colspan', '2');
+      header.innerHTML = `<td>${value}</td>`;
+      table.append(header);
+
+      PHONE_NUMBER[value].forEach(elem => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+        <td>${elem[0]}</td>
+        <td>${elem[1]}</td>
+        `;
+        table.append(row)
+      });
+    }
+  </script>
+</body>
+
+</html>

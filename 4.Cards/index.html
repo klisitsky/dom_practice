@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/4.Cards/css/style.css">
+  <title>Карточки</title>
+</head>
+
+<body>
+  <div class="items">
+  </div>
+
+  <script src="/4.Cards/js/const.js"></script>
+  <script>
+    people.forEach(person => {
+      const fio = `${person.name.f} ${person.name.i} ${person.name.o}`
+      const date = person.date
+        ? `${person.date.d} ${month[person.date.m]} ${person.date.y} г.` 
+        : 'Дата рождения неизвестна';
+      const data = document.createElement('p')
+      data.innerHTML = fio +" "+ date
+
+      for (i = 1; i <= 12; i++) {
+        if (person.date.m == i) {
+          if (document.querySelector(`.items > div .item--${i}`) == null) {
+            const div = document.createElement('div')
+            div.classList.add('item')
+            div.innerHTML = `
+              <h3>${monthIp[i]}</h3>
+              <div class="item item--${i}"></div>
+            `
+            document.querySelector('.items').append(div)
+          }
+          document.querySelector(`.items > div .item--${i}`).append(data)
+        }
+      }
+    });  
+
+  </script>
+</body>
+
+</html>

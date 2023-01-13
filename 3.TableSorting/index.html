@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/3.TableSorting/css/style.css">
+  <title>Сортировка таблицы</title>
+</head>
+
+<body>
+
+  <script src="/3.TableSorting/js/const.js"></script>
+  <script>
+      const table = document.createElement('table')
+      table.innerHTML = `<tr>
+          <th>Room</th>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Phone</th>
+        </tr>`
+      document.querySelector('body').append(table)
+      people.forEach(person => {
+        const row = document.createElement('tr')
+        for (let key in person) {
+          switch(key) {
+            case 'room':
+              row.insertAdjacentHTML('beforeend',`<td>${person[key]}</td>`);
+              break;
+            case 'name':
+              row.insertAdjacentHTML('beforeend',`<td>
+                ${person[key].f} ${person[key].i} ${person[key].o}
+              </td>`);
+              break;
+            case 'date':
+            row.insertAdjacentHTML('beforeend',`<td>
+                ${person[key].d}.${person[key].m}.${person[key].y}
+              </td>`);
+              break;
+            case 'number':
+              row.insertAdjacentHTML('beforeend',`<td>${person[key][0]}</td>`);
+              break;
+          }
+
+        }
+      table.append(row)
+    });
+    const sortTable = function() {
+      const sortedTable = Array.from(table.rows)
+      .slice(1)
+      .sort((rowA, rowB) => {
+        return rowA.cells[0].textContent - rowB.cells[0].textContent
+      });
+
+      return table.append(...sortedTable)
+    }
+
+    sortTable()
+  </script>
+</body>
+
+</html>
