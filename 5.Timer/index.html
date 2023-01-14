@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/5.Timer/css/style.css">
+  <title>Таймер</title>
+</head>
+
+<body>
+
+  <div class="timer-progresbar">
+    <div class="timer-progressbar__fill"></div>
+    <div class="timer-progressbar__empty"></div>
+  </div>
+
+  <script>
+    const myTimer = function(seconds) {
+      let startTime = new Date()
+      let endTime = new Date()
+      endTime = endTime.setSeconds(endTime.getSeconds() + seconds)
+
+      let interval = setInterval(() => {
+        let currentTime = new Date()
+        let leftPercent = Math.trunc((endTime - currentTime) / (endTime - startTime) * 100)
+        let passedPercent = +(100 - leftPercent)
+
+        document.querySelector('.timer-progressbar__fill').textContent = passedPercent + "%"
+        document.querySelector('.timer-progressbar__fill').style.width = passedPercent + "%"
+
+        document.querySelector('.timer-progressbar__empty').textContent = leftPercent + "%"
+        document.querySelector('.timer-progressbar__empty').style.width = leftPercent + "%"
+
+        if (leftPercent == 0) {
+          clearInterval(interval);
+          document.querySelector('.timer-progressbar__empty').style.display = "none"
+        }
+      }, 1000)
+    }
+
+    myTimer(10)
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/6.NamesGenerator/css/style.css">
+  <title>Генератор названий</title>
+</head>
+
+<body>
+
+  <script>
+   let words1 = ["Непобедимый", "Визжащий", "Реальный", "Скоростной", "Экцентричный", "Кодовый", "Прожорливый", "Догадливый", "Гениальный", "Разрушительный", "Растерянный", "Торопливый", "Вопрошающий", "Космический", "Динамичный", "Паникующий", "Задумчивый", "Загадочный", "Рекордный", "Непонимающий", "Ультрафиолетовый", "Читающий", "Озорной", "Тормозной", "Волшебный", "Хардовый", "Тычущий", "Внимательный", "Криповый",];
+   let words2 = ["Мозг", "Везунчик", "Повелитель", "Красавчик", "Печенька", "Тормоз", "Динозавр", "Индеец", "Экстрасенс", "Цыпленок", "Решала", "Ураган", "Взломщик", "Эрудит", "Сыщик", "Крушитель", "Паникер", "Шутник", "Обуза", "Капитан", "Ботаник", "Гриб", "Зомби", "Котик", "Ведьмак", "Храбрец", "Мастер", "Король",];
+
+     const joinAllNames = function(arr1, arr2) {
+      let allNamesArray = []
+      for (i = 0; i < arr1.length; i++) {
+        for (j = 0; j < arr2.length; j++) {
+          allNamesArray.push(`${arr1[i]} ${arr2[j]}`)
+        }
+      }
+      return allNamesArray
+    }
+
+    let allNames = joinAllNames(words1, words2)
+
+    let item = document.createElement('div')
+    item.classList.add('randomName')
+    document.body.append(item)
+    setInterval(() => {
+      let getRandomName = allNames[Math.floor(Math.random() * allNames.length)]
+      console.log(getRandomName)
+      item.textContent = getRandomName
+    }, 1000)
+
+     </script>
+</body>
+
+</html>
