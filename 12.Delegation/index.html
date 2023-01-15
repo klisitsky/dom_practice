@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/style.css" id="theme">
+  <title>Делегирование</title>
+</head>
+
+<body>
+  
+  <table id="table">
+    <tr style="cursor: pointer">
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr style="cursor: pointer">
+      <td>5</td>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+    </tr>
+    <tr style="cursor: pointer">
+      <td>9</td>
+      <td>10</td>
+      <td>11</td>
+      <td>12</td>
+    </tr>
+  </table>
+
+  <script>
+
+    let clickTr;
+    let overTr
+
+    function searchingRow(event){
+      let tr = event.target.closest('tr')
+      if (!tr) return
+      if (!table.contains(tr)) return
+      return tr
+    }
+
+    table.addEventListener('click', function(event){
+      click(searchingRow(event))
+    })
+
+    table.addEventListener('mouseover', function(event){
+      hover(searchingRow(event))
+    })
+
+    function click(tr) {
+      if (clickTr) {
+        clickTr.classList.remove('act');
+      }
+      clickTr = tr;
+      clickTr.classList.remove('over')
+      clickTr.classList.add('act');
+
+    }
+
+    function hover(tr) {
+      if (overTr) {
+        overTr.classList.remove('over');
+      }
+      overTr = tr;
+      if (!overTr.classList.contains('act')) {
+        overTr.classList.add('over');
+      }
+      
+    }
+
+
+  </script>
+</body>
+
+</html>
+
