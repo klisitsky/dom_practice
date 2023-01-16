@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/17.TableSorting/css/style.css" id="theme">
+  <title>Сортировка таблицы</title>
+</head>
+
+<body>
+
+  <table id="table">
+    <thead>
+      <tr>
+        <th data-type="string">Имя</th>
+        <th data-type="number">Возраст</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Алексюн</td>
+        <td>19</td>
+      </tr>
+      <tr>
+        <td>Александр</td>
+        <td>22</td>
+      </tr>
+      <tr>
+        <td>Иван</td>
+        <td>15</td>
+      </tr>
+      <tr>
+        <td>Алексей</td>
+        <td>18</td>
+      </tr>
+      <tr>
+        <td>Аладин</td>
+        <td>20</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    table.addEventListener('click', function(event) {
+      if (!table.contains(event.target)) return
+      if (event.target.tagName == 'TH') {
+        let th = event.target
+        sortingTable(th.cellIndex, th.dataset.type)
+      }
+    })
+
+    function sortingTable(colNumber, colType) {
+      let tBody = document.querySelector('tbody')
+      let tableRows = Array.from(tBody.rows);  
+      let compare;
+
+      switch (colType) {
+        case 'number':
+          compare = function(rowA, rowB) {
+            return rowA.cells[colNumber].innerHTML - rowB.cells[colNumber].innerHTML
+          }
+          break;
+        case 'string':
+          compare = function(rowA, rowB) {
+            return rowA.cells[colNumber].innerHTML > rowB.cells[colNumber].innerHTML ? 1 : -1
+          }
+          break;
+      }
+        
+      tableRows.sort(compare)
+      tBody.append(...tableRows) 
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/14.Switch/css/style.css" id="theme">
+  <title>Переключатель</title>
+</head>
+
+<body>
+  
+  <button data-toggle-id="email">
+    Показать/Скрыть Email
+  </button>
+
+  <form id="email" hidden>
+    Email: <input type="email">
+  </form>
+
+  <button data-toggle-id="password">
+    Показать/Скрыть Password
+  </button>
+
+  <form id="password" hidden>
+    Пароль: <input type="password">
+  </form>
+
+  <script>
+    document.addEventListener('click', function(event){
+      let id = event.target.dataset.toggleId
+      if (!id) return
+      let element = document.getElementById(id)
+      element.hidden = !element.hidden
+    })
+  </script>
+</body>
+
+</html>
