@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/18.Tooltip/css/style.css" id="theme">
+  <title>Всплывающая подсказка</title>
+</head>
+
+<body>
+  <button data-tooltip="Длинный текст с подсказкой">Кнопка 1</button>
+  <button data-tooltip="Подсказка с<br> HTML тегами">Кнопка 2</button>
+
+  <script>
+    let tooltipOfElem;
+    document.addEventListener('mouseover', function(event){
+      let target = event.target
+      let tooltipHTML = target.dataset.tooltip
+      if (!tooltipHTML) return
+      tooltipOfElem = document.createElement('div');
+      tooltipOfElem.className = "tooltip";
+      tooltipOfElem.innerHTML = tooltipHTML;
+      document.body.append(tooltipOfElem);
+
+      let coords = target.getBoundingClientRect()
+      let left = coords.left + (target.offsetWidth - tooltipOfElem.offsetWidth) / 2
+      if (left < 5) left = 5  
+
+      let top = coords.top - tooltipOfElem.offsetHeight - 5
+      if (top < 0) top = coords.top + coords.Height + 5
+
+      tooltipOfElem.style.top = top + "px";
+      tooltipOfElem.style.left = left + "px";
+    })
+    document.addEventListener('mouseout', function(event){
+      tooltipOfElem.remove()
+      tooltipOfElem = null;
+    })
+    
+  </script>
+</body>
+
+</html>

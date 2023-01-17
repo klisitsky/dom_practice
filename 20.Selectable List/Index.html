@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/20.Selectable List/css/style.css" id="theme">
+  <title>Выделяемый список</title>
+</head>
+
+<body>
+  <ul id="list">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+    <li>Item 4</li>
+    <li>Item 5</li>
+    <li>Item 6</li>
+  </ul>
+  
+  <script>
+    list.onclick = function(event){
+      if (event.target.tagName != 'LI') return
+      if (event.ctrlKey || event.metaKey) {
+        toggleSelect(event.target)
+      } else {
+        singleSelect(event.target)
+      }
+
+      function toggleSelect(li) {
+        li.classList.toggle('act')
+      }
+      function singleSelect(li) {
+        for (let li of document.querySelectorAll('li')) {
+          li.classList.remove('act')
+        }
+        li.classList.add('act')
+      }
+    }
+
+    list.onmousedown = () => false
+  </script>
+</body>
+
+</html>
