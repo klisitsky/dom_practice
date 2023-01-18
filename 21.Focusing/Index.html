@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/21.Focusing/css/style.css" id="theme">
+  <title>Фокусировка</title>
+</head>
+
+<body>
+
+  <form id="form">
+    <input name="mail" type="email">
+    <input type="text">
+  </form>
+  <div hidden class="error">Введите пожалуйста корректный Email</div> 
+
+  <script>
+    let inputEmail = document.forms.form.mail
+    let errorDesc = document.querySelector('.error');
+    inputEmail.onblur = function() {
+      if (!this.value.includes('@')) {
+        this.classList.add('act')
+        errorDesc.hidden = false
+      }
+    }
+    inputEmail.onfocus = function() {
+      this.classList.remove('act')
+      errorDesc.hidden = true
+    }
+  </script>
+</body>
+
+</html>

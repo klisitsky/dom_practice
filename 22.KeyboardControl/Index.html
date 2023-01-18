@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/22.KeyboardControl/css/style.css" id="theme">
+  <title>Управление с клавиатуры</title>
+</head>
+
+<body>
+
+  <img src="/22.KeyboardControl/img/1.jpg" id="image">
+
+  <script>
+    image.tabIndex = 0
+
+    image.onclick = function() {
+      this.style.left = this.getBoundingClientRect().left + 'px';
+      this.style.top = this.getBoundingClientRect().top + 'px';
+      this.style.position = 'fixed'
+    }
+
+    image.onkeydown = function(e) {
+      switch (e.key) {
+        case 'ArrowLeft':
+          this.style.left = parseInt(this.style.left) - this.width + 'px'; 
+          console.log(parseInt(this.style.left))
+          return false
+      
+        case 'ArrowRight':
+          this.style.left = this.getBoundingClientRect().left + this.width + 'px';
+          console.log(parseInt(this.style.left))
+          return false
+        
+        case 'ArrowUp':
+          this.style.top = this.getBoundingClientRect().top - this.height + 'px';
+          console.log(parseInt(this.style.top))
+          return false
+      
+        case 'ArrowDown':
+          this.style.top = this.getBoundingClientRect().top + this.height + 'px';
+          console.log(parseInt(this.style.top))
+          return false
+      }
+
+    }
+  </script>
+</body>
+
+</html>
